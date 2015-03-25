@@ -1,6 +1,6 @@
+package characterData;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class DDCharacter {
 
@@ -43,10 +43,7 @@ public class DDCharacter {
 		charClass.add(inClass);
 	}
 
-	public List characterClass() {
+	public List<String> characterClass() {
 		return charClass;
 	}
-
-
-
 }

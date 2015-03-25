@@ -1,3 +1,4 @@
+package characterData;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -11,6 +12,7 @@ public class CharacterTest {
 	public void createNewCharacterTest(){
 		DDCharacter character = new DDCharacter();
 		assertEquals("New Character", character.name());
+		assertEquals(0, character.level());
 	}
 	
 	@Test
