@@ -2,13 +2,9 @@ package characterData;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Test;
 
 import characterData.utils.Attribute;
-
 
 public class CharacterTest {
 

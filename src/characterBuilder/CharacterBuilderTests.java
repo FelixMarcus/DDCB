@@ -1,4 +1,4 @@
-package controller;
+package characterBuilder;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,11 +7,11 @@ import org.junit.Test;
 import characterData.DDCharacter;
 import printers.CharacterXMLPrinter;
 
-public class CharacterControllerTests {
+public class CharacterBuilderTests {
 
 	@Test 
 	public void saveNewCharacterTest(){
-		CharacterController controller = new CharacterController();
+		CharacterBuilder controller = new CharacterBuilder();
 		controller.newCharacter();
 		String saveString = controller.save(new CharacterXMLPrinter());
 		
