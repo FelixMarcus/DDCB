@@ -1,6 +1,7 @@
 package printers;
 
 import characterData.DDCharacter;
+import characterData.utils.Attribute;
 
 
 public class CharacterXMLPrinter implements CharacterPrinter{
@@ -12,8 +13,14 @@ public class CharacterXMLPrinter implements CharacterPrinter{
 		builder.append(character.name());
 		builder.append("'>");
 		
+		builder.append("<Attributes");
+		for(Attribute attr: Attribute.values()){
+			builder.append(" "+ attr.toString().toLowerCase() +"="+character.getAttribute(attr));
+		}
+		builder.append(">");
+		
 		for(String className: character.characterClass()){
-			builder.append("<Class type= '"+ className +"'>");
+			builder.append("<Class type='"+ className +"'>");
 		}
 		
 		builder.append("</DDCharacter>");

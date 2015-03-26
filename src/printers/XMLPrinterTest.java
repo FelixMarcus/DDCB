@@ -13,7 +13,7 @@ public class XMLPrinterTest {
 		DDCharacter character = new DDCharacter();
 		CharacterXMLPrinter printer = new CharacterXMLPrinter();
 		String xmlPrintout = printer.print(character);
-		assertEquals("<DDCharacter name = 'New Character'></DDCharacter>", xmlPrintout);
+		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10></DDCharacter>", xmlPrintout);
 	}
 	
 	@Test
@@ -21,9 +21,9 @@ public class XMLPrinterTest {
 		DDCharacter character = new DDCharacter("New Name");
 		CharacterXMLPrinter printer = new CharacterXMLPrinter();
 		String xmlPrintout = printer.print(character);
-		assertEquals("<DDCharacter name = 'New Name'></DDCharacter>", xmlPrintout);
+		assertEquals("<DDCharacter name = 'New Name'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10></DDCharacter>", xmlPrintout);
 	}
-	
+	;
 	@Test
 	public void printSingleLeveledCharacterTest(){
 		DDCharacter character = new DDCharacter();
@@ -32,7 +32,7 @@ public class XMLPrinterTest {
 		character.levelUp("Fighter");
 		
 		String xmlPrintout = printer.print(character);
-		assertEquals("<DDCharacter name = 'New Character'><Class type= 'Fighter'></DDCharacter>", xmlPrintout);
+		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><Class type='Fighter'></DDCharacter>", xmlPrintout);
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ public class XMLPrinterTest {
 		character.levelUp("Cleric");
 
 		String xmlPrintout = printer.print(character);
-		assertEquals("<DDCharacter name = 'New Character'><Class type= 'Fighter'><Class type= 'Cleric'></DDCharacter>", xmlPrintout);
+		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><Class type='Fighter'><Class type='Cleric'></DDCharacter>", xmlPrintout);
 	}
 }
 
