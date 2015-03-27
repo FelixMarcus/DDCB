@@ -22,5 +22,9 @@ public class CharacterBuilder {
 
 	public void setAttribute(Attribute attr, int inStat) {
 		character.setAttribute(attr, inStat);
+	}
+
+	public void rename(String newName) {
+		character.rename(newName);;
 	}	
 }

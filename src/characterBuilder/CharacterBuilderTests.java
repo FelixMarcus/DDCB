@@ -19,6 +19,16 @@ public class CharacterBuilderTests {
 	}
 	
 	@Test
+	public void renameCharacter(){
+		CharacterBuilder builder = new CharacterBuilder();
+		builder.newCharacter();
+		builder.rename("Onan");
+		String saveString = builder.save(new CharacterXMLPrinter());
+		
+		assertEquals("<DDCharacter name = 'Onan'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10></DDCharacter>", saveString);
+	}
+	
+	@Test
 	public void levelUpTest(){
 		CharacterBuilder builder = new CharacterBuilder();
 		builder.newCharacter();
