@@ -19,7 +19,7 @@ public class CharacterXMLPrinter implements CharacterPrinter{
 		}
 		builder.append(">");
 		
-		for(String className: character.characterClass()){
+		for(String className: character.characterClass().keySet()){
 			builder.append("<Class type='"+ className +"'>");
 		}
 		

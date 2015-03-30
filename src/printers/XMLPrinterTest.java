@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import characterData.ClassLevel;
 import characterData.DDCharacter;
 
 public class XMLPrinterTest {
@@ -23,13 +24,13 @@ public class XMLPrinterTest {
 		String xmlPrintout = printer.print(character);
 		assertEquals("<DDCharacter name = 'New Name'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10></DDCharacter>", xmlPrintout);
 	}
-	;
+
 	@Test
 	public void printSingleLeveledCharacterTest(){
 		DDCharacter character = new DDCharacter();
 		CharacterXMLPrinter printer = new CharacterXMLPrinter();
 		
-		character.addClassLevel("Fighter");
+		character.addClassLevel(new ClassLevel("Fighter"));
 		
 		String xmlPrintout = printer.print(character);
 		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><Class type='Fighter'></DDCharacter>", xmlPrintout);
@@ -40,8 +41,8 @@ public class XMLPrinterTest {
 		DDCharacter character = new DDCharacter();
 		CharacterXMLPrinter printer = new CharacterXMLPrinter();
 		
-		character.addClassLevel("Fighter");
-		character.addClassLevel("Cleric");
+		character.addClassLevel(new ClassLevel("Fighter"));
+		character.addClassLevel(new ClassLevel("Cleric"));
 
 		String xmlPrintout = printer.print(character);
 		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><Class type='Fighter'><Class type='Cleric'></DDCharacter>", xmlPrintout);

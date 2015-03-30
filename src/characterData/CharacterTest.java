@@ -1,7 +1,6 @@
 package characterData;
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
 import org.junit.Test;
 
 import characterData.utils.Attribute;
@@ -83,25 +82,35 @@ public class CharacterTest {
 	@Test 
 	public void characterLevelUpTest(){
 		DDCharacter character = new DDCharacter();
-		character.addClassLevel("Fighter");
+		character.addClassLevel(new ClassLevel("Fighter"));
 		assertEquals(1, character.level());
-		assertEquals(Arrays.asList("Fighter"), character.characterClass());
+		Integer testClassLevel = character.characterClass().get("Fighter");
+		assertEquals(Integer.valueOf(1), testClassLevel);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void characterLevelUpBlankClassTest(){
 		DDCharacter character = new DDCharacter();
-		character.addClassLevel("");
+		character.addClassLevel(new ClassLevel(""));
 	}
 	
 	@Test 
 	public void characterLevelUpTwoClassTest(){
 		DDCharacter character = new DDCharacter();
-		character.addClassLevel("Fighter");
+		
+		character.addClassLevel(new ClassLevel("Fighter"));
+		
 		assertEquals(1, character.level());
-		assertEquals(Arrays.asList("Fighter"), character.characterClass());
-		character.addClassLevel("Cleric");
+		Integer testClassLevel = character.characterClass().get("Fighter");
+		assertEquals(Integer.valueOf(1), testClassLevel);
+		
+		character.addClassLevel(new ClassLevel("Cleric"));
+		
 		assertEquals(2, character.level());
-		assertEquals(Arrays.asList("Fighter", "Cleric"), character.characterClass());
+		
+		testClassLevel = character.characterClass().get("Fighter");
+		assertEquals(Integer.valueOf(1), testClassLevel);
+		testClassLevel = character.characterClass().get("Cleric");
+		assertEquals(Integer.valueOf(1), testClassLevel);
 	}
 }

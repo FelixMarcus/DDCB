@@ -1,7 +1,6 @@
 package characterData;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import characterData.utils.Attribute;
@@ -10,7 +9,7 @@ public class DDCharacter {
 
 	private String name;
 	private int level;
-	private ArrayList<String> charClass  = new ArrayList<>();
+	private ArrayList<ClassLevel> charClass  = new ArrayList<>();
 
 	private Map<Attribute, Integer> attributes = new HashMap<>();
 
@@ -46,16 +45,23 @@ public class DDCharacter {
 		return level;
 	}
 
-	public void addClassLevel(String inClass) {
-		if(inClass.isEmpty() || inClass == null)
+	public void addClassLevel(ClassLevel classLevel) {
+		if(classLevel.name().isEmpty() || classLevel.name() == null)
 			throw new IllegalArgumentException("Blank class name passed on level up. Level up not continued.");
-
 		level++;
-		charClass.add(inClass);
+		charClass.add(classLevel);
 	}
 
-	public List<String> characterClass() {
-		return charClass;
+	public Map<String, Integer> characterClass() {
+		HashMap<String, Integer> classMap = new HashMap<>();
+		for(ClassLevel classLevel: charClass){
+			if(classMap.get(classLevel.name()) == null)
+				classMap.put(classLevel.name(), 1);
+			else
+				classMap.put(classLevel.name(), classMap.get(classLevel.name())+1);
+		}
+				
+		return classMap;
 	}
 
 	public int getAttribute(Attribute attr) {

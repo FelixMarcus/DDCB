@@ -1,5 +1,6 @@
 package characterBuilder;
 
+import characterData.ClassLevel;
 import characterData.DDCharacter;
 import characterData.utils.Attribute;
 import printers.CharacterXMLPrinter;
@@ -17,7 +18,8 @@ public class CharacterBuilder {
 	}
 
 	public void levelUp(String inClass) {
-		character.addClassLevel(inClass);
+		
+		character.addClassLevel(new ClassLevel(inClass));
 	}
 
 	public void setAttribute(Attribute attr, int inStat) {
