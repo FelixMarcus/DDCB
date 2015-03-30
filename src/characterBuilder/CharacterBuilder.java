@@ -17,7 +17,7 @@ public class CharacterBuilder {
 	}
 
 	public void levelUp(String inClass) {
-		character.levelUp(inClass);
+		character.addClassLevel(inClass);
 	}
 
 	public void setAttribute(Attribute attr, int inStat) {

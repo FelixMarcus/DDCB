@@ -83,7 +83,7 @@ public class CharacterTest {
 	@Test 
 	public void characterLevelUpTest(){
 		DDCharacter character = new DDCharacter();
-		character.levelUp("Fighter");
+		character.addClassLevel("Fighter");
 		assertEquals(1, character.level());
 		assertEquals(Arrays.asList("Fighter"), character.characterClass());
 	}
@@ -91,16 +91,16 @@ public class CharacterTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void characterLevelUpBlankClassTest(){
 		DDCharacter character = new DDCharacter();
-		character.levelUp("");
+		character.addClassLevel("");
 	}
 	
 	@Test 
 	public void characterLevelUpTwoClassTest(){
 		DDCharacter character = new DDCharacter();
-		character.levelUp("Fighter");
+		character.addClassLevel("Fighter");
 		assertEquals(1, character.level());
 		assertEquals(Arrays.asList("Fighter"), character.characterClass());
-		character.levelUp("Cleric");
+		character.addClassLevel("Cleric");
 		assertEquals(2, character.level());
 		assertEquals(Arrays.asList("Fighter", "Cleric"), character.characterClass());
 	}

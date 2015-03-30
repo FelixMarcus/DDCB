@@ -46,7 +46,7 @@ public class DDCharacter {
 		return level;
 	}
 
-	public void levelUp(String inClass) {
+	public void addClassLevel(String inClass) {
 		if(inClass.isEmpty() || inClass == null)
 			throw new IllegalArgumentException("Blank class name passed on level up. Level up not continued.");
 
