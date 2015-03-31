@@ -2,6 +2,7 @@ package characterData;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import characterData.utils.Attribute;
 
@@ -9,9 +10,10 @@ public class DDCharacter {
 
 	private String name;
 	private int level;
-	private ArrayList<ClassLevel> charClass  = new ArrayList<>();
+	private ArrayList<ClassLevel> levels  = new ArrayList<>();
 
 	private Map<Attribute, Integer> attributes = new HashMap<>();
+	private Map<String, String> details = new HashMap<>();
 
 	public DDCharacter(String newName) {
 		this();
@@ -49,12 +51,12 @@ public class DDCharacter {
 		if(classLevel.name().isEmpty() || classLevel.name() == null)
 			throw new IllegalArgumentException("Blank class name passed on level up. Level up not continued.");
 		level++;
-		charClass.add(classLevel);
+		levels.add(classLevel);
 	}
 
 	public Map<String, Integer> characterClass() {
 		HashMap<String, Integer> classMap = new HashMap<>();
-		for(ClassLevel classLevel: charClass){
+		for(ClassLevel classLevel: levels){
 			if(classMap.get(classLevel.name()) == null)
 				classMap.put(classLevel.name(), 1);
 			else
@@ -73,5 +75,20 @@ public class DDCharacter {
 			throw new IllegalArgumentException("Statistics cannot go below 0. Please check typing, or kill character.");
 		else
 			attributes.put(attr, inStat);
+	}
+
+	public void setDetail(String detailKey, String detailValue) {
+		details.put(detailKey.toLowerCase(), detailValue);
+	}
+
+	public String getDetail(String detail) {
+		if(details.get(detail) != null)
+			return details.get(detail);
+		else return "";
+	}
+
+	public Set<String> detailsSet() {
+		// TODO Auto-generated method stub
+		return details.keySet();
 	}
 }

@@ -24,6 +24,15 @@ public class XMLPrinterTest {
 		String xmlPrintout = printer.print(character);
 		assertEquals("<DDCharacter name = 'New Name'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10></DDCharacter>", xmlPrintout);
 	}
+	
+	@Test
+	public void printDetailedCharacterTest(){
+		DDCharacter character = new DDCharacter("New Name");
+		character.setDetail("Eye Colour", "Blue");
+		CharacterXMLPrinter printer = new CharacterXMLPrinter();
+		String xmlPrintout = printer.print(character);
+		assertEquals("<DDCharacter name = 'New Name' eyecolour='Blue'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10></DDCharacter>", xmlPrintout);
+	}
 
 	@Test
 	public void printSingleLeveledCharacterTest(){

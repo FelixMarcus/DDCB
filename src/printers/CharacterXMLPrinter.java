@@ -11,7 +11,14 @@ public class CharacterXMLPrinter implements CharacterPrinter{
 		StringBuilder builder = new StringBuilder();
 		builder.append("<DDCharacter name = '");
 		builder.append(character.name());
-		builder.append("'>");
+		builder.append("'");
+
+		
+		for(String detail: character.detailsSet()){
+			builder.append(" "+ detail.toLowerCase().replace(" ", "") +"='"+character.getDetail(detail)+"'");
+		}
+		
+		builder.append(">");
 		
 		builder.append("<Attributes");
 		for(Attribute attr: Attribute.values()){

@@ -28,6 +28,13 @@ public class CharacterTest {
 		assertEquals("Renamed", character.name());
 	}
 	
+	@Test
+	public void setDetailTest(){
+		DDCharacter character = new DDCharacter();
+		character.setDetail("Hair Colour", "Brown");
+		assertEquals(character.getDetail("hair colour"), "Brown");
+	}
+	
 	@Test 
 	public void defaultCharacterAttributesTest(){
 		DDCharacter character = new DDCharacter();
