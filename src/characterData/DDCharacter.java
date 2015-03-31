@@ -88,7 +88,13 @@ public class DDCharacter {
 	}
 
 	public Set<String> detailsSet() {
-		// TODO Auto-generated method stub
 		return details.keySet();
+	}
+	
+	public double bab(){
+		double bab = 0;
+		for(ClassLevel thislevel: levels)
+			bab += thislevel.bab();
+		return bab;
 	}
 }

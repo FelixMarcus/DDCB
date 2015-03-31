@@ -42,7 +42,7 @@ public class XMLPrinterTest {
 		character.addClassLevel(new ClassLevel("Fighter"));
 		
 		String xmlPrintout = printer.print(character);
-		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><Class type='Fighter'></DDCharacter>", xmlPrintout);
+		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><AttackStats bab=1.00><Class type='Fighter'></DDCharacter>", xmlPrintout);
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class XMLPrinterTest {
 		character.addClassLevel(new ClassLevel("Cleric"));
 
 		String xmlPrintout = printer.print(character);
-		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><Class type='Fighter'><Class type='Cleric'></DDCharacter>", xmlPrintout);
+		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><AttackStats bab=1.66><Class type='Fighter'><Class type='Cleric'></DDCharacter>", xmlPrintout);
 	}
 }
 

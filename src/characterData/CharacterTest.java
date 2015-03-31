@@ -120,4 +120,21 @@ public class CharacterTest {
 		testClassLevel = character.characterClass().get("Cleric");
 		assertEquals(Integer.valueOf(1), testClassLevel);
 	}
+	
+	@Test 
+	public void characterGetBABTest(){
+		DDCharacter character = new DDCharacter();
+		
+		character.addClassLevel(new ClassLevel("Fighter"));
+		
+		assertEquals(1, character.bab(), 0.0001);
+		
+		character = new DDCharacter();
+		character.addClassLevel(new ClassLevel("Cleric"));
+		assertEquals(0.666, character.bab(), 0.001);
+		
+		character.addClassLevel(new ClassLevel("Fighter"));
+		
+		assertEquals(1.666, character.bab(), 0.001);
+	}
 }

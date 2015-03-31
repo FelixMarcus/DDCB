@@ -14,10 +14,12 @@ public class ClassLevel {
 		return name;
 	}
 
-	public float bab() {
+	public double bab() {
 		if(name().equals("Fighter"))
 			return 1;
+		else if(name().equals("Cleric"))
+			return 0.66;
 		else 
-			return 2/3;
+			return 0.5;
 	}
 }
