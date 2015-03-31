@@ -2,6 +2,8 @@ package characterBuilder;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import characterData.utils.Attribute;
@@ -39,7 +41,7 @@ public class CharacterBuilderTests {
 	}
 	
 	@Test
-	public void levelUpTest() throws DDClassNotRecognisedException{
+	public void levelUpTest() throws DDClassNotRecognisedException, IOException{
 		CharacterBuilder builder = new CharacterBuilder();
 		builder.newCharacter();
 		builder.levelUp("Fighter");
@@ -49,7 +51,7 @@ public class CharacterBuilderTests {
 	}
 	
 	@Test(expected = DDClassNotRecognisedException.class)
-	public void levelUpInvalidClassTest() throws DDClassNotRecognisedException{
+	public void levelUpInvalidClassTest() throws DDClassNotRecognisedException, IOException{
 		CharacterBuilder builder = new CharacterBuilder();
 		builder.newCharacter();
 		builder.levelUp("Not A Class");
