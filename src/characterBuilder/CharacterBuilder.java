@@ -28,5 +28,9 @@ public class CharacterBuilder {
 
 	public void rename(String newName) {
 		character.rename(newName);;
+	}
+
+	public void setDetail(String detailKey, String detailValue) {
+		character.setDetail(detailKey, detailValue);
 	}	
 }

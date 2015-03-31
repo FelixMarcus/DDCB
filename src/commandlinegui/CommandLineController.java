@@ -26,28 +26,19 @@ public class CommandLineController {
 			try{
 				switch(command){
 				case "create":
-					characterBuilder = new CharacterBuilder();
-					characterBuilder.newCharacter();
-					if(splitInput.length >1)
-						characterBuilder.rename(splitInput[1]);
+					createCommand(splitInput);
 					break;
 				case "level":
-					String className;
-					if(splitInput.length == 1){
-						className = readLine("Which Class?");
-					}
-					else
-						className = splitInput[1];
-
-					characterBuilder.levelUp(className);
+					levelCommand(splitInput);
 					break;
 				case "save":
-					System.out.println(characterBuilder.save(new CharacterXMLPrinter()));
+					saveCommand();
+					break;
+				case "describe":
+					describeCommand(splitInput);
 					break;
 				case "exit":
-					System.out.println("Quitting character builder");
-					characterBuilder = null;
-					keepRunning = false;
+					keepRunning = exitCommand();
 					break;
 				default:
 					throw new InvalidCommandException(command);
@@ -58,14 +49,53 @@ public class CommandLineController {
 			}
 		}
 	}
+
+	private boolean exitCommand() {
+		boolean keepRunning;
+		System.out.println("Quitting character builder");
+		characterBuilder = null;
+		keepRunning = false;
+		return keepRunning;
+	}
+
+	private void describeCommand(String[] splitInput) throws IOException {
+		if(splitInput.length >2)
+			characterBuilder.setDetail(splitInput[1], splitInput[2]);
+		else{
+			String descriptor = readLine("descriptor:");
+			String value = readLine("set as:");
+			characterBuilder.setDetail(descriptor, value);
+		}
+	}
+
+	private void saveCommand() {
+		System.out.println(characterBuilder.save(new CharacterXMLPrinter()));
+	}
+
+	private void levelCommand(String[] splitInput) throws IOException {
+		String className;
+		if(splitInput.length == 1){
+			className = readLine("Which Class?");
+		}
+		else
+			className = splitInput[1];
+
+		characterBuilder.levelUp(className);
+	}
+
+	private void createCommand(String[] splitInput) {
+		characterBuilder = new CharacterBuilder();
+		characterBuilder.newCharacter();
+		if(splitInput.length >1)
+			characterBuilder.rename(splitInput[1]);
+	}
 	
 	private String readLine(String output) throws IOException {
 	    if (System.console() != null) {
 	        return System.console().readLine(output);
 	    }
 	    System.out.print(output);
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(
-	            System.in));
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	    return reader.readLine();
 	}
 	
