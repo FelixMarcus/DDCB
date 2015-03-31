@@ -39,13 +39,20 @@ public class CharacterBuilderTests {
 	}
 	
 	@Test
-	public void levelUpTest(){
+	public void levelUpTest() throws DDClassNotRecognisedException{
 		CharacterBuilder builder = new CharacterBuilder();
 		builder.newCharacter();
 		builder.levelUp("Fighter");
 		String saveString = builder.save(new CharacterXMLPrinter());
 		
-		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><Class type='Fighter'></DDCharacter>", saveString);		
+		assertEquals("<DDCharacter name = 'New Character'><Attributes str=10 dex=10 con=10 wis=10 int=10 cha=10><AttackStats bab=1.00><Class type='Fighter'></DDCharacter>", saveString);		
+	}
+	
+	@Test(expected = DDClassNotRecognisedException.class)
+	public void levelUpInvalidClassTest() throws DDClassNotRecognisedException{
+		CharacterBuilder builder = new CharacterBuilder();
+		builder.newCharacter();
+		builder.levelUp("Not A Class");
 	}
 	
 	@Test

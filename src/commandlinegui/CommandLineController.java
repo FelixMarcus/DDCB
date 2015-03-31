@@ -6,16 +6,17 @@ import java.io.InputStreamReader;
 
 import printers.CharacterXMLPrinter;
 import characterBuilder.CharacterBuilder;
+import characterBuilder.DDClassNotRecognisedException;
 
 public class CommandLineController {
 
 	private CharacterBuilder characterBuilder;
 
 	public void run() throws IOException{
-		
+
 		System.out.println("Starting Character Builder Interface");
 		boolean keepRunning = true;
-		
+
 		while(keepRunning){
 			String input = readLine("Type command...");
 
@@ -45,7 +46,7 @@ public class CommandLineController {
 				}
 			}
 			catch(InvalidCommandException e){
-				System.out.println("Command entered:"+ e.command() +" is not a valid command. To view list of valid commands and arguments, enter help.");
+				System.out.println("Command entered: '"+ e.command() +"'. This is not a valid command. To view list of valid commands and arguments, enter help.");
 			}
 		}
 	}
@@ -80,7 +81,14 @@ public class CommandLineController {
 		else
 			className = splitInput[1];
 
-		characterBuilder.levelUp(className);
+		try{
+			characterBuilder.levelUp(className);
+			System.out.println("Levelling character up as:" + className);
+		}
+		catch(DDClassNotRecognisedException e){
+			System.out.println(className +" not a recognised class. Check spelling and try again. For full list of available classes, enter 'classlist'");
+			return;
+		}
 	}
 
 	private void createCommand(String[] splitInput) {
@@ -89,16 +97,16 @@ public class CommandLineController {
 		if(splitInput.length >1)
 			characterBuilder.rename(splitInput[1]);
 	}
-	
+
 	private String readLine(String output) throws IOException {
-	    if (System.console() != null) {
-	        return System.console().readLine(output);
-	    }
-	    System.out.print(output);
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	    return reader.readLine();
+		if (System.console() != null) {
+			return System.console().readLine(output);
+		}
+		System.out.print(output);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		return reader.readLine();
 	}
-	
+
 	public static void main(String[] argvs) throws IOException{
 		CommandLineController controller = new CommandLineController();
 		controller.run();

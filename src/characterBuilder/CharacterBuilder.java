@@ -17,9 +17,11 @@ public class CharacterBuilder {
 		return characterXMLPrinter.print(character);
 	}
 
-	public void levelUp(String inClass) {
-		
-		character.addClassLevel(new ClassLevel(inClass));
+	public void levelUp(String inClass) throws DDClassNotRecognisedException {
+		if(inClass.toLowerCase().equals("fighter")||inClass.toLowerCase().equals("cleric"))
+			character.addClassLevel(new ClassLevel(inClass));
+		else
+			throw new DDClassNotRecognisedException(inClass +" is not a recognised class.");
 	}
 
 	public void setAttribute(Attribute attr, int inStat) {
